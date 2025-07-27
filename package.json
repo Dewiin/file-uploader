@@ -1,0 +1,37 @@
+{
+  "name": "file-uploader",
+  "version": "1.0.0",
+  "description": "File Uploader project from The Odin Project curriculum",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dewiin/file-uploader.git"
+  },
+  "keywords": [],
+  "author": "Dewiin",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Dewiin/file-uploader/issues"
+  },
+  "homepage": "https://github.com/Dewiin/file-uploader#readme",
+  "dependencies": {
+    "@quixo3/prisma-session-store": "^3.1.13",
+    "bcryptjs": "^3.0.2",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "express-validator": "^7.2.1",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "pg": "^8.16.3",
+    "prettier": "^3.6.2"
+  },
+  "devDependencies": {
+    "dotenv": "^17.2.1",
+    "prisma": "^6.12.0"
+  }
+}
