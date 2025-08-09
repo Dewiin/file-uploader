@@ -1,5 +1,11 @@
-:root {
+@import url("https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
+:root {
+    
+}
+
+* {
+    font-family: "Anonymous Pro", monospace;
 }
 
 html, body {
@@ -7,4 +13,20 @@ html, body {
     padding: 0;
     height: 100%;
     width: 100vw;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+	width: 100%;
+	height: fit-content;
+	padding: 1rem 0;
+	text-align: center;
 }
