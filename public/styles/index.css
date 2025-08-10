@@ -1,18 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 :root {
-    
 }
 
 * {
-    font-family: "Anonymous Pro", monospace;
+	font-family: "Anonymous Pro", monospace;
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100vw;
+html,
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100vw;
 }
 
 body {
@@ -21,7 +21,7 @@ body {
 }
 
 main {
-    flex: 1;
+	flex: 1;
 }
 
 footer {
@@ -32,13 +32,13 @@ footer {
 }
 
 .error-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 32px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 32px;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
+	text-decoration: none;
+	color: inherit;
 }

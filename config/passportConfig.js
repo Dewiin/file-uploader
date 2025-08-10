@@ -7,10 +7,10 @@ const prisma = new PrismaClient();
 async function verifyCallback(username, password, done) {
 	try {
 		const user = await prisma.user.findUnique({
-            where: {
-                username
-            },
-        })
+			where: {
+				username,
+			},
+		});
 		if (!user) {
 			return done(null, false, { message: "Username not found." });
 		}
@@ -34,7 +34,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
 	try {
-		const user = await prisma.user.findUnique({ where: { id } })
+		const user = await prisma.user.findUnique({ where: { id } });
 
 		done(null, user);
 	} catch (err) {

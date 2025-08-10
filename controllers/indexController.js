@@ -25,5 +25,5 @@ async function signupGet(req, res) {
 module.exports = {
 	indexGet,
 	loginGet,
-	signupGet
+	signupGet,
 };
