@@ -1,3 +1,8 @@
+const { body, validationResult } = require("express-validator");
+const passport = require("passport");
+const bcrypt = require("bcryptjs");
+const prisma = require("../config/prismaClient");
+
 async function indexGet(req, res) {
 	try {
 		res.render("index");
@@ -15,9 +20,12 @@ async function loginGet(req, res) {
 	}
 }
 
-async function loginPost(req, res) {
+async function loginPost(req, res, next) {
 	try {
-		
+		console.log(req.body);
+		const {username, password} = req.body;
+
+
 	} catch (err) {
 		console.error("Error posting login information: ", err);
 	}
@@ -32,7 +40,7 @@ async function signupGet(req, res) {
 	}
 }
 
-async function signupPost(req, res) {
+async function signupPost(req, res, next) {
 	try {
 
 	} catch (err) {
