@@ -5,12 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
     <link rel="stylesheet" href="/styles/index.css">
+    <link rel="stylesheet" href="/styles/form.css">
 </head>
 <body>
     <%- include("partials/navbar") %>
 
-    <main>
-        
+    <main class="form-container">
+        <form class="auth-form" action="/sign-up" method="POST">
+            <h1>Sign Up</h1>
+
+            <span class="form-inputs">
+                <span class="input-group">
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" id="username" minlength="6" maxlength="20" required>
+                </span>
+                <span class="input-group">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" minlength="6" maxlength="20" required>
+                </span>
+                <span class="input-group">
+                    <label for="confirm-password">Confirm Password:</label>
+                    <input type="password" name="confirm-password" id="confirm-password" minlength="6" maxlength="20" required>
+                </span>
+            </span>
+
+            <button type="submit">Sign Up</button>
+            <p class="form-info-text">Already have an account? <a href="/login">Log In</a></p>
+        </form>
     </main>
 
     <%- include("partials/footer") %>
