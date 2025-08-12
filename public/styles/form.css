@@ -44,3 +44,11 @@
 .input-group > input {
     padding: 0.25rem 0.5rem;
 }
+
+.form-info-text {
+    margin: 0;
+    font-size: 0.9em;
+}
+.form-info-text > a {
+    color: default;
+}
