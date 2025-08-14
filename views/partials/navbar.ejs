@@ -4,7 +4,11 @@
         <a href="/">File Uploader</a>
     </span>
     <span class="interactive-buttons">
-        <button><a href="login">Log In</a></button>
-        <button><a href="sign-up">Sign Up</a></button>
+        <% if(!locals.user) { %>
+            <button><a href="login">Log In</a></button>
+            <button><a href="sign-up">Sign Up</a></button>
+        <% } else { %>
+            <button><a href="/logout">Log Out</a></button>
+        <% } %>
     </span>
 </nav>

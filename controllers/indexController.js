@@ -64,7 +64,7 @@ const validateUserLogin = [
 
 async function indexGet(req, res) {
 	try {
-		res.render("index");
+		res.render("index", {user: req.user});
 	} catch (err) {
 		console.error("Error rendering index page: ", err);
 	}
@@ -135,6 +135,16 @@ async function signupPost(req, res, next) {
 	}
 }
 
+// Log Out
+function logoutGet(req, res) {
+	req.logout((err) => {
+		if (err) {
+			return next(err);
+		}
+		res.redirect("/");
+	});
+}
+
 module.exports = {
 	indexGet,
 	loginGet,
@@ -155,4 +165,5 @@ module.exports = {
 			failureRedirect: "/sign-up",
 		}),
 	],
+	logoutGet
 };
