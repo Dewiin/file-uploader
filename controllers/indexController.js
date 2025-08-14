@@ -64,7 +64,11 @@ const validateUserLogin = [
 
 async function indexGet(req, res) {
 	try {
-		res.render("index", {user: req.user});
+		if(!req.user) {
+			return res.redirect("/login");
+		}
+
+		res.redirect("/folders");
 	} catch (err) {
 		console.error("Error rendering index page: ", err);
 	}
