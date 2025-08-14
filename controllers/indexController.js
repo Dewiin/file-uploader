@@ -24,7 +24,7 @@ const validateUserSignup = [
 	body("password")
 		.matches(/^[\S]+$/)
 		.withMessage("Password cannot contain whitespace."),
-	body("confirm_password").custom((value, { req }) => {
+	body("confirm-password").custom((value, { req }) => {
 		if (value !== req.body.password) {
 			throw new Error("Passwords do not match.");
 		}
