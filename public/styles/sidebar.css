@@ -2,5 +2,34 @@ aside {
     height: 100%;
     width: 200px;
     padding: 1rem;
-    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-right: 1px solid darkgrey;
+}
+
+aside a {
+    text-decoration: none;
+    color: inherit;
+}
+
+nav.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.sl-btn::part(base) {
+    justify-content: left;
+}
+
+sl-tree-item::part(label) {
+    font-size: 1rem;
+    text-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+:not(:defined) {
+    visibility: hidden;
 }

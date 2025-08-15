@@ -1,11 +1,11 @@
-nav {
+nav.navbar {
 	height: 50px;
-	padding: 1rem 3rem;
+	padding: 0.5rem 1rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background-color: black;
 	color: white;
+	border-bottom: 1px solid darkgrey;
 }
 
 nav a {

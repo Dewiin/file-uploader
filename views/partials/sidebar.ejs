@@ -1,11 +1,32 @@
 <link rel="stylesheet" href="/styles/sidebar.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/dark.css" />
 <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace.js" ></script>
 <aside>
+    <nav class="sidebar-nav">
+        <sl-button class="sl-btn" size="medium">
+            <sl-icon slot="prefix" name="folder-plus"></sl-icon>
+            New Folder
+        </sl-button>
+        <sl-button class="sl-btn" size="medium">
+            <sl-icon slot="prefix" name="file-earmark-plus"></sl-icon>
+            New File
+        </sl-button>
+    </nav>
     <sl-tree>
-        <sl-tree-item selected> Trees
-            <sl-tree-item>Birch</sl-tree-item>
+        <sl-tree-item selected expanded> 
+            <sl-icon name="folder"></sl-icon>
+            <a href="/folders"><%= locals.user.username %></a>
+            <sl-tree-item>
+                <sl-icon name="file-earmark"></sl-icon>
+                Test 1
+            </sl-tree-item>
+            <sl-tree-item>
+                <sl-icon name="file-earmark"></sl-icon>
+                Test 2
+            </sl-tree-item><sl-tree-item>
+                <sl-icon name="file-earmark"></sl-icon>
+                Test 3
+            </sl-tree-item>
         </sl-tree-item>
-        <sl-tree-item>Maple</sl-tree-item>
     </sl-tree>
 </aside>
