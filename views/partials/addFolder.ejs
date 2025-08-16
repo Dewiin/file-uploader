@@ -1,0 +1,17 @@
+
+<link rel="stylesheet" href="/styles/modal.css">
+<sl-dialog label="Create New Folder" class="modal-container new-folder">
+    <form class="modal-form" action="/folders" method="POST">
+        <span>
+            <sl-input 
+                id="folder-name" 
+                name="folder-name" 
+                label="Name"
+                help-text="What would you like to name your folder?"
+                minlength="1" 
+                maxlength="100">
+            </sl-input>
+            <sl-button variant="primary" type="submit">Create Folder</sl-button>
+        </span>
+    </form>
+</sl-dialog>
