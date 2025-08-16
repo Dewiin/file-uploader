@@ -5,8 +5,12 @@
     </span>
     <span class="interactive-buttons">
         <% if(!locals.user) { %>
-            <button><a href="login">Log In</a></button>
-            <button><a href="sign-up">Sign Up</a></button>
+            <a href="login">
+                <sl-button>Log In</sl-button>
+            </a>
+            <a href="sign-up">
+                <sl-button>Sign Up</sl-button>
+            </a>
         <% } else { %>
             <a href="/logout">
                 <sl-icon name="box-arrow-right"></sl-icon>

@@ -29,7 +29,3 @@ sl-tree-item::part(label) {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
-:not(:defined) {
-    visibility: hidden;
-}
