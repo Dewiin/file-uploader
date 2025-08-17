@@ -23,7 +23,7 @@ app.use("/", indexRouter);
 app.use("/folders", folderRouter);
 app.use("/files", fileRouter);
 app.use((req, res) => {
-	res.status(404).render("404", {user: req.user});
+	res.status(404).render("404", { user: req.user });
 });
 
 // Run

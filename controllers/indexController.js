@@ -64,7 +64,7 @@ const validateUserLogin = [
 
 async function indexGet(req, res) {
 	try {
-		if(!req.user) {
+		if (!req.user) {
 			return res.redirect("/login");
 		}
 
@@ -169,5 +169,5 @@ module.exports = {
 			failureRedirect: "/sign-up",
 		}),
 	],
-	logoutGet
+	logoutGet,
 };

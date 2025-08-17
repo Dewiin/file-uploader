@@ -1,17 +1,16 @@
 .modal-container {
-    border: none;
-    padding: 0;
-    margin: auto;
+	border: none;
+	padding: 0;
+	margin: auto;
 }
 
-
 .modal-form > span {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
 }
 
 .modal-form > span > sl-button {
-    width: fit-content;
-    margin-left: auto;
+	width: fit-content;
+	margin-left: auto;
 }

@@ -39,5 +39,5 @@ footer {
 }
 
 :not(:defined) {
-    visibility: hidden;
+	visibility: hidden;
 }
