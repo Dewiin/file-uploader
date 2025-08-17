@@ -19,6 +19,10 @@ nav.sidebar-nav {
     gap: 0.25rem;
 }
 
+sl-tree {
+    --indent-guide-width: 1px;
+}
+
 .sl-btn::part(base) {
     justify-content: left;
 }

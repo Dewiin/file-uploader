@@ -1,4 +1,4 @@
-async function foldersGet(req, res) {
+function foldersGet(req, res) {
     try {
         if(!req.user) {
             return res.redirect("/login");
@@ -10,7 +10,11 @@ async function foldersGet(req, res) {
     }
 }
 
+async function foldersPost(req, res) {
+
+}
+
 module.exports = {
     foldersGet,
-
+    foldersPost
 }
