@@ -14,17 +14,13 @@
         <sl-tree-item selected expanded> 
             <sl-icon name="folder"></sl-icon>
             <a href="/folders"><%= locals.user.username %></a>
+
+            <% userFolders.forEach((folder) => { %>
             <sl-tree-item>
                 <sl-icon name="file-earmark"></sl-icon>
-                Test 1
+                <%= folder.name %>
             </sl-tree-item>
-            <sl-tree-item>
-                <sl-icon name="file-earmark"></sl-icon>
-                Test 2
-            </sl-tree-item><sl-tree-item>
-                <sl-icon name="file-earmark"></sl-icon>
-                Test 3
-            </sl-tree-item>
+            <% }) %>
         </sl-tree-item>
     </sl-tree>
 </aside>
