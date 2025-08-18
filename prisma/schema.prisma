@@ -14,9 +14,11 @@ datasource db {
 }
 
 model User {
-  id            Int     @id @default(autoincrement())
-  username      String  @unique 
-  password      String  
+  id       Int      @id @default(autoincrement())
+  username String   @unique
+  password String
+  folders  Folder[]
+  Share    Share[]
 
   @@map("users")
 }
@@ -25,7 +27,53 @@ model Session {
   id        String   @id
   sid       String   @unique
   data      String   @db.Text // MediumText may be needed for MySql
-  expiresAt   DateTime
+  expiresAt DateTime
 
   @@map("session")
+}
+
+model Folder {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+
+  // Relations
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id])
+  files      File[]
+  parentId   Int? // for nested folders
+  parent     Folder?  @relation("Subfolders", fields: [parentId], references: [id])
+  subfolders Folder[] @relation("Subfolders")
+  shares     Share[]
+
+  @@map("folders")
+}
+
+model File {
+  id         Int      @id @default(autoincrement())
+  name       String
+  size       Int
+  url        String // file location (filesystem path or cloud URL)
+  uploadedAt DateTime @default(now())
+
+  // Relations
+  folderId Int?
+  folder   Folder? @relation(fields: [folderId], references: [id])
+
+  @@map("files")
+}
+
+model Share {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique // UUID or random string for shareable link
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  // Relations
+  folderId Int
+  folder   Folder @relation(fields: [folderId], references: [id])
+  userId   Int
+  user     User   @relation(fields: [userId], references: [id])
+
+  @@map("shares")
 }
