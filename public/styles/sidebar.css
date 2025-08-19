@@ -28,7 +28,7 @@ sl-tree {
 }
 
 sl-tree-item::part(label) {
-	font-size: 1rem;
+	font-size: 0.95rem;
 	text-wrap: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;

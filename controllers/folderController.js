@@ -14,7 +14,9 @@ async function foldersGet(req, res) {
 			}
 		});
 
-		res.render("index", { user: req.user, userFolders: userFolders });
+		const { folderId } = req.params;
+
+		res.render("index", { user: req.user, userFolders, folderId });
 	} catch (err) {
 		console.error(`Error retrieving folders: `, err);
 	}

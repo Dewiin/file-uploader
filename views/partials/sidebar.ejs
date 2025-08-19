@@ -9,14 +9,22 @@
             <sl-icon slot="prefix" name="file-earmark-plus"></sl-icon>
             New File
         </sl-button>
+        <% if (folderId) { %>
+        <sl-button class="sl-btn delete-folder" size="medium">
+            <sl-icon slot="prefix" name="trash"></sl-icon>
+            Delete Folder
+        </sl-button>
+        <% } %>
     </nav>
     <sl-tree>
-        <sl-tree-item selected expanded> 
+        <sl-tree-item expanded 
+        <%= !folderId ? "selected" : "" %>> 
             <sl-icon name="folder"></sl-icon>
             <a href="/folders"><%= locals.user.username %></a>
 
             <% userFolders.forEach((folder) => { %>
-            <sl-tree-item>
+            <sl-tree-item
+            <%= folder.id == folderId ? "selected expanded" : "" %>>
                 <sl-icon name="folder"></sl-icon>
                 <a href="/folders/<%= folder.id %>">
                     <%= folder.name %>
