@@ -17,8 +17,10 @@
 
             <% userFolders.forEach((folder) => { %>
             <sl-tree-item>
-                <sl-icon name="file-earmark"></sl-icon>
-                <%= folder.name %>
+                <sl-icon name="folder"></sl-icon>
+                <a href="/folders/<%= folder.id %>">
+                    <%= folder.name %>
+                </a>
             </sl-tree-item>
             <% }) %>
         </sl-tree-item>
