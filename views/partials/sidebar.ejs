@@ -1,35 +1,30 @@
 <link rel="stylesheet" href="/styles/sidebar.css" />
 <aside>
     <nav class="sidebar-nav">
-        <sl-button class="sl-btn new-folder" size="medium">
+        <sl-button class="sl-btn new-folder" size="small">
             <sl-icon slot="prefix" name="folder-plus"></sl-icon>
             New Folder
         </sl-button>
-        <sl-button class="sl-btn new-file" size="medium">
+        <sl-button class="sl-btn new-file" size="small">
             <sl-icon slot="prefix" name="file-earmark-plus"></sl-icon>
             New File
         </sl-button>
         <% if (folderId) { %>
-        <sl-button class="sl-btn delete-folder" size="medium">
+        <sl-button class="sl-btn delete-folder" href="/folders/<%=folderId%>/delete" size="small">
             <sl-icon slot="prefix" name="trash"></sl-icon>
             Delete Folder
         </sl-button>
         <% } %>
     </nav>
     <sl-tree>
-        <sl-tree-item expanded 
-        <%= !folderId ? "selected" : "" %>> 
-            <sl-icon name="folder"></sl-icon>
-            <a href="/folders"><%= locals.user.username %></a>
+        <sl-tree-item expanded <%= !folderId ? "selected" : "" %>> 
+            <a href="/folders">
+                <sl-icon name="folder"></sl-icon>
+                <%= locals.user.username %>
+            </a>
 
             <% userFolders.forEach((folder) => { %>
-            <sl-tree-item
-            <%= folder.id == folderId ? "selected expanded" : "" %>>
-                <sl-icon name="folder"></sl-icon>
-                <a href="/folders/<%= folder.id %>">
-                    <%= folder.name %>
-                </a>
-            </sl-tree-item>
+                <%- include("./treeItem", {folder, folderId}) %>
             <% }) %>
         </sl-tree-item>
     </sl-tree>

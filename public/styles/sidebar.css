@@ -11,6 +11,13 @@ aside {
 aside a {
 	text-decoration: none;
 	color: inherit;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	width: 100%;
+	padding: 0.5rem 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 nav.sidebar-nav {
@@ -28,8 +35,8 @@ sl-tree {
 }
 
 sl-tree-item::part(label) {
-	font-size: 0.95rem;
-	text-wrap: nowrap;
+	font-size: 0.8rem; 
+	display: block;
+	width: 100%;
 	overflow: hidden;
-	text-overflow: ellipsis;
 }

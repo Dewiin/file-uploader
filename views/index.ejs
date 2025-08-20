@@ -12,8 +12,8 @@
 
     <main class="index-container">
         <%- include("./partials/sidebar") %>
-        <%- include("./partials/folderFileModal", {modalType: "folder"}) %>
-        <%- include("./partials/folderFileModal", {modalType: "file"}) %>
+        <%- include("./partials/folderFileModal", {modalType: "folder", folderId}) %>
+        <%- include("./partials/folderFileModal", {modalType: "file", folderId}) %>
     </main>
 </body>
 </html>
