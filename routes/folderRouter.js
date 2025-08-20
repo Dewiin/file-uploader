@@ -6,6 +6,7 @@ const folderRouter = Router();
 folderRouter.get("/", folderController.foldersGet);
 folderRouter.get("/:folderId", folderController.foldersGet);
 folderRouter.get("/:folderId/delete", folderController.foldersDelete);
+folderRouter.post("/", folderController.foldersPost);
 folderRouter.post("/:folderId", folderController.foldersPost);
 
 module.exports = folderRouter;

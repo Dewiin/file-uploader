@@ -10,7 +10,7 @@ async function foldersGet(req, res) {
 
 		const userFolders = await prisma.folder.findMany({
 			where: {
-				userId: userId,
+				userId,
 				parentId: null
 			},
 			include: {
@@ -18,7 +18,10 @@ async function foldersGet(req, res) {
 			}
 		});
 
-		const { folderId } = req.params;
+		let { folderId } = req.params;
+		if(!folderId) {
+			folderId = "";
+		}
 
 		res.render("index", { user: req.user, userFolders, folderId });
 	} catch (err) {
@@ -30,15 +33,19 @@ async function foldersPost(req, res) {
 	try {
 		const folderName = req.body['folder-name'];
 		const userId = req.user.id;
-		const parentId = (req.params.folderId ? req.params.folderId : null);
+		let parentId = (req.params.folderId ? parseInt(req.params.folderId) : null);
 
 		await prisma.folder.create({
 			data: {
 				name: folderName,
-				userId: userId,
-				parentId: parseInt(parentId)
+				userId,
+				parentId,
 			}
 		});
+		
+		if(!parentId) {
+			parentId = "";
+		}
 
 		res.redirect(`/folders/${parentId}`);
 	} catch (err) {
@@ -48,15 +55,29 @@ async function foldersPost(req, res) {
 
 async function foldersDelete(req, res) {
 	try {
-		const {folderId} = req.params;
+		const folderId = (req.params.folderId ? parseInt(req.params.folderId) : null);
 
-		await prisma.folder.delete({
+
+		const deletedFolder = await prisma.folder.delete({
 			where: {
-				id: parseInt(folderId)
+				id: folderId
 			}
 		});
 
-		res.redirect("/")
+		const closestSibling = await prisma.folder.findFirst({
+			where: {
+				userId: req.user.id,
+				parentId: deletedFolder.parentId,
+			},
+			orderBy: {
+				id: "desc"
+			}
+		});
+
+		if (closestSibling) {
+			return res.redirect(`/folders/${closestSibling.id}`);
+		}
+		res.redirect(`/folders`);
 	} catch (err) {
 		console.error(`Error deleting folder from database: `, err);
 	}

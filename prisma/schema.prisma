@@ -42,7 +42,7 @@ model Folder {
   user       User     @relation(fields: [userId], references: [id])
   files      File[]
   parentId   Int? // for nested folders
-  parent     Folder?  @relation("Subfolders", fields: [parentId], references: [id])
+  parent     Folder?  @relation("Subfolders", fields: [parentId], references: [id], onDelete: Cascade)
   subfolders Folder[] @relation("Subfolders")
   shares     Share[]
 

@@ -1,4 +1,4 @@
-<sl-tree-item <%= folder.id == folderId ? "selected expanded" : "" %>>
+<sl-tree-item expanded <%= folder.id == folderId ? "selected" : "" %>>
     <a href="/folders/<%= folder.id %>">
         <sl-icon name="folder"></sl-icon>
         <%= folder.name %>
