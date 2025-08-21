@@ -24,6 +24,10 @@ main {
 	flex: 1;
 }
 
+main.index-container {
+	display: flex;
+}
+
 footer {
 	width: 100%;
 	height: fit-content;
