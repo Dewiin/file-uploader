@@ -1,19 +1,19 @@
-const prisma = require('../config/prismaClient');
+const prisma = require("../config/prismaClient");
 
 // Helper
 async function getFolderWithSubfolders(parentId, userId) {
-	try {	
+	try {
 		const userFolders = await prisma.folder.findMany({
 			where: {
 				userId,
-				parentId
+				parentId,
 			},
 			include: {
-				subfolders: true
-			}
+				subfolders: true,
+			},
 		});
 
-		if(!userFolders) {
+		if (!userFolders) {
 			return null;
 		}
 
@@ -21,10 +21,11 @@ async function getFolderWithSubfolders(parentId, userId) {
 			userFolders.map(async (folder) => {
 				folder.subfolders = await getFolderWithSubfolders(folder.id, userId);
 				return folder;
-			})
+			}),
 		);
 	} catch (err) {
 		console.error(`Error retrieving root folder with all subfolders: `, err);
+		return [];
 	}
 }
 
@@ -38,7 +39,7 @@ async function foldersGet(req, res) {
 		const userFolders = await getFolderWithSubfolders(null, userId);
 
 		let { folderId } = req.params;
-		if(!folderId) {
+		if (!folderId) {
 			folderId = "";
 		}
 
@@ -50,19 +51,19 @@ async function foldersGet(req, res) {
 
 async function foldersPost(req, res) {
 	try {
-		const folderName = req.body['folder-name'];
+		const folderName = req.body["folder-name"];
 		const userId = req.user.id;
-		let parentId = (req.params.folderId ? parseInt(req.params.folderId) : null);
+		let parentId = req.params.folderId ? parseInt(req.params.folderId) : null;
 
 		await prisma.folder.create({
 			data: {
 				name: folderName,
 				userId,
 				parentId,
-			}
+			},
 		});
-		
-		if(!parentId) {
+
+		if (!parentId) {
 			parentId = "";
 		}
 
@@ -74,13 +75,12 @@ async function foldersPost(req, res) {
 
 async function foldersDelete(req, res) {
 	try {
-		const folderId = (req.params.folderId ? parseInt(req.params.folderId) : null);
-
+		const folderId = req.params.folderId ? parseInt(req.params.folderId) : null;
 
 		const deletedFolder = await prisma.folder.delete({
 			where: {
-				id: folderId
-			}
+				id: folderId,
+			},
 		});
 
 		const closestSibling = await prisma.folder.findFirst({
@@ -89,8 +89,8 @@ async function foldersDelete(req, res) {
 				parentId: deletedFolder.parentId,
 			},
 			orderBy: {
-				id: "desc"
-			}
+				id: "desc",
+			},
 		});
 
 		if (closestSibling) {
@@ -102,9 +102,8 @@ async function foldersDelete(req, res) {
 	}
 }
 
-
 module.exports = {
 	foldersGet,
 	foldersPost,
-	foldersDelete
+	foldersDelete,
 };
