@@ -23,9 +23,11 @@
                 <%= locals.user.username %>
             </a>
 
-            <% userFolders.forEach((folder) => { %>
-                <%- include("./treeItem", {folder, folderId}) %>
-            <% }) %>
+            <% if(userFolders && userFolders.length > 0) { %>
+                <% userFolders.forEach((folder) => { %>
+                    <%- include("./treeItem", {folder, folderId}) %>
+                <% }) %>
+            <% } %>
         </sl-tree-item>
     </sl-tree>
 </aside>

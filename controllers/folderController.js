@@ -1,5 +1,33 @@
 const prisma = require('../config/prismaClient');
 
+// Helper
+async function getFolderWithSubfolders(parentId, userId) {
+	try {	
+		const userFolders = await prisma.folder.findMany({
+			where: {
+				userId,
+				parentId
+			},
+			include: {
+				subfolders: true
+			}
+		});
+
+		if(!userFolders) {
+			return null;
+		}
+
+		return await Promise.all(
+			userFolders.map(async (folder) => {
+				folder.subfolders = await getFolderWithSubfolders(folder.id, userId);
+				return folder;
+			})
+		);
+	} catch (err) {
+		console.error(`Error retrieving root folder with all subfolders: `, err);
+	}
+}
+
 async function foldersGet(req, res) {
 	try {
 		if (!req.user) {
@@ -7,16 +35,7 @@ async function foldersGet(req, res) {
 		}
 
 		const userId = req.user.id;
-
-		const userFolders = await prisma.folder.findMany({
-			where: {
-				userId,
-				parentId: null
-			},
-			include: {
-				subfolders: true
-			}
-		});
+		const userFolders = await getFolderWithSubfolders(null, userId);
 
 		let { folderId } = req.params;
 		if(!folderId) {
@@ -82,6 +101,7 @@ async function foldersDelete(req, res) {
 		console.error(`Error deleting folder from database: `, err);
 	}
 }
+
 
 module.exports = {
 	foldersGet,
