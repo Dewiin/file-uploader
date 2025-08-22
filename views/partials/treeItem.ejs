@@ -1,8 +1,8 @@
 <sl-tree-item expanded <%= folder.id == folderId ? "selected" : "" %>>
     <a href="/folders/<%= folder.id %>">
-        <sl-icon name="folder" size="small"></sl-icon>
         <%= folder.name %>
     </a>
+
     <% if(folder.subfolders && folder.subfolders.length > 0) { %>
         <% folder.subfolders.forEach((subfolder) => { %>
             <%- include("./treeItem", {folder: subfolder}) %>

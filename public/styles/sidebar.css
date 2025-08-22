@@ -13,9 +13,9 @@ aside a {
 	color: inherit;
 	display: flex;
 	align-items: center;
-	gap: 0.5rem;
-	width: 100%;
 	padding: 0.5rem 0;
+	font-size: 0.8rem;
+	display: block;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
@@ -35,8 +35,7 @@ sl-tree {
 }
 
 sl-tree-item::part(label) {
-	font-size: 0.8rem;
-	display: block;
 	width: 100%;
 	overflow: hidden;
+	text-overflow: ellipsis;
 }
