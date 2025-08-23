@@ -51,7 +51,7 @@
 
 .form-info-text {
 	margin: 0;
-	font-size: 0.9em;
+	font-size: var(--sl-font-size-small);
 }
 .form-info-text > a {
 	color: default;
