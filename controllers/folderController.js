@@ -38,7 +38,7 @@ async function foldersGet(req, res) {
 		const userId = req.user.id;
 		const userFolders = await getFolderWithSubfolders(null, userId);
 
-		const folderId = (req.params.folderId ? req.params.folderId : "");
+		const folderId = req.params.folderId ? req.params.folderId : "";
 
 		res.render("index", { user: req.user, userFolders, folderId });
 	} catch (err) {
