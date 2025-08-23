@@ -38,9 +38,18 @@ async function foldersGet(req, res) {
 		const userId = req.user.id;
 		const userFolders = await getFolderWithSubfolders(null, userId);
 
-		const folderId = req.params.folderId ? req.params.folderId : "";
+		let folderId = req.params.folderId ? parseInt(req.params.folderId) : null;
+		const userFiles = await prisma.file.findMany({
+			where: {
+				folderId,
+			}
+		})
 
-		res.render("index", { user: req.user, userFolders, folderId });
+		if (!folderId) {
+			folderId = "";
+		}
+
+		res.render("index", { user: req.user, userFolders, folderId, userFiles });
 	} catch (err) {
 		console.error(`Error retrieving folders: `, err);
 	}

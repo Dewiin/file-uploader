@@ -11,10 +11,17 @@
     </div>
 
     <div class="files-container">
-        <div class="file">
-            <span>name</span>
-            <span>1.0 MB</span>
-            <span>Aug 25, 2025</span>
-        </div>
+        <% userFiles.forEach((file) => { %>
+            <div class="file">
+                <span><%= file.name %></span>
+                <span><%= file.size %></span>
+                
+                <span><%= file.uploadedAt.toLocaleDateString("en-us", { 
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                }) %></span>
+            </div>
+        <% }) %>
     </div>
 </section>
