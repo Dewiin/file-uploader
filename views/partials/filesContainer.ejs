@@ -11,9 +11,22 @@
     </div>
 
     <div class="files-container">
+        <% subfolders.forEach((subfolder) => { %>
+            <a class="file" href="/folders/<%= subfolder.id %>">
+                <span><sl-icon name="folder"></sl-icon> <%= subfolder.name %></span>
+                <span> -- </span>
+                <span>
+                <%= subfolder.createdAt.toLocaleDateString("en-us", { 
+                    month: "short",
+                    day: "numeric", 
+                    year: "numeric",
+                }) %>
+                </span>
+            </a>
+        <% }) %>
         <% userFiles.forEach((file) => { %>
             <div class="file">
-                <span><%= file.name %></span>
+                <span><sl-icon name="file-earmark"></sl-icon> <%= file.name %></span>
                 <span><%= file.size %></span>
                 <span>
                 <%= file.uploadedAt.toLocaleDateString("en-us", { 

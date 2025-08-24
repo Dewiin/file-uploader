@@ -43,13 +43,19 @@ async function foldersGet(req, res) {
 			where: {
 				folderId,
 			}
+		});
+		const subfolders = await prisma.folder.findMany({
+			where: {
+				userId,
+				parentId: folderId,
+			}
 		})
 
 		if (!folderId) {
 			folderId = "";
 		}
 
-		res.render("index", { user: req.user, userFolders, folderId, userFiles });
+		res.render("index", { user: req.user, userFolders, folderId, userFiles, subfolders });
 	} catch (err) {
 		console.error(`Error retrieving folders: `, err);
 	}
