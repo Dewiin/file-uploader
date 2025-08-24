@@ -15,13 +15,29 @@
             <div class="file">
                 <span><%= file.name %></span>
                 <span><%= file.size %></span>
-                
-                <span><%= file.uploadedAt.toLocaleDateString("en-us", { 
+                <span>
+                <%= file.uploadedAt.toLocaleDateString("en-us", { 
                     month: "short",
                     day: "numeric",
                     year: "numeric",
-                }) %></span>
+                }) %>
+                </span>
             </div>
+            <sl-drawer label="File Information">
+                <div class="drawer-info">
+                    <span><b>Name: </b><%= file.name %></span>
+                    <span><b>Size: </b><%= file.size %></span>
+                    <span><b>Created: </b>
+                        <%= file.uploadedAt.toLocaleDateString("en-us", { 
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                        }) %>
+                    </span>
+                </div>
+
+                <sl-button slot="footer" variant="primary">Close</sl-button>
+            </sl-drawer>
         <% }) %>
     </div>
 </section>

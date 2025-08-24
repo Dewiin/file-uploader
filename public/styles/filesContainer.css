@@ -57,3 +57,18 @@ section.files-main-preview {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+/* Drawer */
+.drawer-info {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.drawer-info > span {
+	color: var(--sl-color-neutral-700);
+}
+
+.drawer-info > span b {
+	color: rgb(255, 255, 255);
+}
