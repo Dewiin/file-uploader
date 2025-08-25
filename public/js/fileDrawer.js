@@ -7,10 +7,12 @@ files.forEach((file) => {
     })
 });
 
-const closeButtons = document.querySelectorAll('sl-drawer > sl-button[variant="primary"]');
+const closeButtons = document.querySelectorAll('sl-drawer > .drawer-close-button');
 closeButtons.forEach((closeButton) => {
     closeButton.addEventListener("click", () => {
         const drawer = closeButton.parentElement;
         drawer.hide();
     })
-})
+});
+
+

@@ -40,7 +40,25 @@ async function filePost(req, res) {
 
 async function fileDelete(req, res) {
 	try {
+		const fileId = parseInt(req.params.fileId);
 
+		const deletedFile = await prisma.file.delete({
+			where: {
+				id: fileId,
+			}
+		});
+
+		if(deletedFile.folderId) {
+			const parentFolder = await prisma.folder.findUnique({
+				where: {
+					id: deletedFile.folderId,
+				}
+			});
+
+			return res.redirect(`/folders/${parentFolder.id}`);
+		}
+
+		res.redirect(`/folders`);
 	} catch (err) {
 		console.error(`Error deleting file from database: `, err);
 	}

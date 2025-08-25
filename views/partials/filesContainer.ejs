@@ -49,7 +49,10 @@
                     </span>
                 </div>
 
-                <sl-button slot="footer" variant="primary">Close</sl-button>
+                <sl-button slot="footer" class="drawer-close-button">Close</sl-button>
+                <sl-button slot="footer" class="drawer-share-button">Share</sl-button>
+                <sl-button slot="footer" class="drawer-delete-button" href="/files/delete/<%= file.id %>">Delete</sl-button>
+                <sl-button slot="footer" class="drawer-download-button" variant="primary">Download</sl-button>
             </sl-drawer>
         <% }) %>
     </div>
