@@ -2,6 +2,9 @@
 <section class="files-main-preview">
     <sl-breadcrumb>
         <sl-breadcrumb-item href="/folders"><%= user.username %></sl-breadcrumb-item>
+        <% breadcrumbFolders.reverse().forEach((folder) => { %>
+            <sl-breadcrumb-item href="/folders/<%= folder.id %>"><%= folder.name %></sl-breadcrumb-item>
+        <% }) %>
     </sl-breadcrumb>
 
     <div class="grid-header">

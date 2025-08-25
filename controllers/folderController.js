@@ -29,6 +29,29 @@ async function getFolderWithSubfolders(parentId, userId) {
 	}
 }
 
+async function getBreadcrumbFolders(parentId, userId, result = []) {
+	try {
+		if(!parentId) {
+			return result;
+		}
+
+		const parentFolder = await prisma.folder.findUnique({
+			where: {
+				userId,
+				id: parentId,
+			}
+		});
+
+		result.push(parentFolder);
+		return await getBreadcrumbFolders(parentFolder.parentId, userId, result);
+	}
+	catch (err) {
+		console.error(`Error retrieving parent folders for breadcrumb: `, err);
+		return [];
+	}
+}
+
+// REST 
 async function foldersGet(req, res) {
 	try {
 		if (!req.user) {
@@ -36,9 +59,11 @@ async function foldersGet(req, res) {
 		}
 
 		const userId = req.user.id;
-		const userFolders = await getFolderWithSubfolders(null, userId);
-
 		let folderId = req.params.folderId ? parseInt(req.params.folderId) : null;
+		
+		const userFolders = await getFolderWithSubfolders(null, userId);
+		const breadcrumbFolders = await getBreadcrumbFolders(folderId, userId);
+
 		const userFiles = await prisma.file.findMany({
 			where: {
 				folderId,
@@ -49,13 +74,13 @@ async function foldersGet(req, res) {
 				userId,
 				parentId: folderId,
 			}
-		})
+		});
 
 		if (!folderId) {
 			folderId = "";
 		}
 
-		res.render("index", { user: req.user, userFolders, folderId, userFiles, subfolders });
+		res.render("index", { user: req.user, userFolders, breadcrumbFolders, folderId, userFiles, subfolders });
 	} catch (err) {
 		console.error(`Error retrieving folders: `, err);
 	}
