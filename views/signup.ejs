@@ -17,21 +17,38 @@
             <h1>Sign Up</h1>
 
             <span class="form-inputs">
-                <span class="input-group">
-                    <label for="username">Username:</label>
-                    <input type="text" name="username" id="username" minlength="6" maxlength="20" required>
-                </span>
-                <span class="input-group">
-                    <label for="password">Password:</label>
-                    <input type="password" name="password" id="password" minlength="6" maxlength="20" required>
-                </span>
-                <span class="input-group">
-                    <label for="confirm-password">Confirm Password:</label>
-                    <input type="password" name="confirm-password" id="confirm-password" minlength="6" maxlength="20" required>
-                </span>
+                <sl-input 
+                    label="Username" 
+                    name="username" 
+                    id="username" 
+                    minlength="6" 
+                    maxlength="20" 
+                    help-text="This is your display name."
+                    required
+                ></sl-input>
+                <sl-input 
+                    label="Password"
+                    type="password" 
+                    name="password" 
+                    id="password" 
+                    minlength="6" 
+                    maxlength="20" 
+                    password-toggle
+                    required
+                ></sl-input>
+                <sl-input 
+                    label="Confirm Password"
+                    type="password" 
+                    name="confirm-password" 
+                    id="confirm-password" 
+                    minlength="6" 
+                    maxlength="20" 
+                    password-toggle
+                    required
+                ></sl-input>
             </span>
 
-            <button type="submit">Sign Up</button>
+            <sl-button type="submit">Sign Up</sl-button>
             <p class="form-info-text">Already have an account? <a href="/login">Log In</a></p>
         </form>
     </main>

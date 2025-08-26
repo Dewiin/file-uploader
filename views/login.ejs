@@ -18,16 +18,32 @@
 
             <span class="form-inputs">
                 <span class="input-group">
-                    <label for="username">Username:</label>
-                    <input type="text" name="username" id="username" minlength="6" maxlength="20" required>
+                    <sl-input 
+                        label="Username" 
+                        name="username" 
+                        id="username" 
+                        minlength="6" 
+                        maxlength="20"
+                        required
+                    >
+                    </sl-input>
                 </span>
                 <span class="input-group">
-                    <label for="password">Password:</label>
-                    <input type="password" name="password" id="password" minlength="6" maxlength="20" required>
+                    <sl-input 
+                        label="Password" 
+                        type="password"
+                        name="password" 
+                        id="password" 
+                        minlength="6" 
+                        maxlength="20" 
+                        password-toggle        
+                        required
+                    >
+                    </sl-input>
                 </span>
             </span>
 
-            <button type="submit">Log In</button>
+            <sl-button type="submit">Log In</sl-button>
             <p class="form-info-text">Don't have an account yet? <a href="/sign-up">Sign up</a></p>
         </form>
     </main>
