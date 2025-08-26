@@ -42,6 +42,12 @@ footer {
 	font-size: 32px;
 }
 
+.sl-alert-container {
+	position: fixed;
+	top: 1rem;
+	right: 1rem;
+}
+
 :not(:defined) {
 	visibility: hidden;
 }

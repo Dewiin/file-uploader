@@ -7,8 +7,14 @@
     <%- include("./partials/header") %>
     <script type="module" src="/js/folderFileModal.js" defer></script>
     <script type="module" src="/js/fileDrawer.js" defer></script>
+    <script type="module" src="/js/showAlert.js" defer></script>
 </head>
 <body>
+    <% if(subfolders.length == 0 && userFiles.length == 0) { %>
+        <div class="sl-alert-container">
+        </div>
+    <% } %>
+
     <%- include("partials/navbar") %>
 
     <main class="index-container">
