@@ -20,4 +20,4 @@ const editFolderModal = document.querySelector(".modal-container.edit-folder");
 
 editFolderButton.addEventListener("click", () => {
 	editFolderModal.show();
-})
+});

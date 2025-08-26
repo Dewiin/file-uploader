@@ -1,18 +1,19 @@
 section.files-main-preview {
 	width: 100%;
-    min-width: 425px;
+	min-width: 425px;
 	height: 100%;
 	padding: 1rem 2rem;
 }
 
-.grid-header, .files-container {
+.grid-header,
+.files-container {
 	display: grid;
 	grid-template-columns: 3fr 1fr 1fr;
-    align-items: center;
+	align-items: center;
 }
 
 .grid-header {
-    margin: 1rem 0 0.25rem;
+	margin: 1rem 0 0.25rem;
 }
 
 .grid-header > a {
@@ -25,12 +26,12 @@ section.files-main-preview {
 }
 
 .files-container {
-    row-gap: 0.25rem;
+	row-gap: 0.25rem;
 }
 
 .files-container > .file {
-    height: var(--sl-input-height-medium);
-    color: var(--sl-color-neutral-700);
+	height: var(--sl-input-height-medium);
+	color: var(--sl-color-neutral-700);
 	grid-column: 1 / 4;
 	display: grid;
 	grid-template-columns: 3fr 1fr 1fr;
@@ -55,9 +56,9 @@ section.files-main-preview {
 .files-container > .file > span {
 	padding: var(--sl-spacing-small);
 	font-size: var(--sl-font-size-small);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;

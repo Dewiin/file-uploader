@@ -31,7 +31,7 @@ async function getFolderWithSubfolders(parentId, userId) {
 
 async function getBreadcrumbFolders(parentId, userId, result = []) {
 	try {
-		if(!parentId) {
+		if (!parentId) {
 			return result;
 		}
 
@@ -39,19 +39,18 @@ async function getBreadcrumbFolders(parentId, userId, result = []) {
 			where: {
 				userId,
 				id: parentId,
-			}
+			},
 		});
 
 		result.push(parentFolder);
 		return await getBreadcrumbFolders(parentFolder.parentId, userId, result);
-	}
-	catch (err) {
+	} catch (err) {
 		console.error(`Error retrieving parent folders for breadcrumb: `, err);
 		return [];
 	}
 }
 
-// Read 
+// Read
 async function foldersGet(req, res) {
 	try {
 		if (!req.user) {
@@ -60,27 +59,34 @@ async function foldersGet(req, res) {
 
 		const userId = req.user.id;
 		let folderId = req.params.folderId ? parseInt(req.params.folderId) : null;
-		
+
 		const userFolders = await getFolderWithSubfolders(null, userId);
 		const breadcrumbFolders = await getBreadcrumbFolders(folderId, userId);
 
 		const userFiles = await prisma.file.findMany({
 			where: {
 				folderId,
-			}
+			},
 		});
 		const subfolders = await prisma.folder.findMany({
 			where: {
 				userId,
 				parentId: folderId,
-			}
+			},
 		});
 
 		if (!folderId) {
 			folderId = "";
 		}
 
-		res.render("index", { user: req.user, userFolders, breadcrumbFolders, folderId, userFiles, subfolders });
+		res.render("index", {
+			user: req.user,
+			userFolders,
+			breadcrumbFolders,
+			folderId,
+			userFiles,
+			subfolders,
+		});
 	} catch (err) {
 		console.error(`Error retrieving folders: `, err);
 	}
@@ -144,7 +150,7 @@ async function foldersDelete(req, res) {
 // Update
 async function foldersUpdate(req, res) {
 	try {
-		const newFolderName = req.body['folder-name'];
+		const newFolderName = req.body["folder-name"];
 		const folderId = parseInt(req.params.folderId);
 
 		await prisma.folder.update({
@@ -153,7 +159,7 @@ async function foldersUpdate(req, res) {
 			},
 			data: {
 				name: newFolderName,
-			}
+			},
 		});
 
 		res.redirect(`/folders/${folderId}`);
@@ -166,5 +172,5 @@ module.exports = {
 	foldersGet,
 	foldersPost,
 	foldersDelete,
-	foldersUpdate
+	foldersUpdate,
 };
