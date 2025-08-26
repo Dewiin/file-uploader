@@ -10,13 +10,16 @@
     <script type="module" src="/js/showAlert.js" defer></script>
 </head>
 <body>
-    <% if(subfolders.length == 0 && userFiles.length == 0) { %>
-        <div class="sl-alert-container">
-        </div>
+    <div class="sl-alert-container">
+    </div>
+
+    <% if(alert) { %>
+        <script>
+            showAlert(alert.variant, alert.message);
+        </script>
     <% } %>
 
     <%- include("partials/navbar") %>
-
     <main class="index-container">
         <%- include("./partials/sidebar") %>
         <%- include("./partials/folderFileModal", {modalType: "folder"}) %>

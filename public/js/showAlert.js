@@ -1,4 +1,5 @@
 function showAlert(variant, message) {
+    console.log("ping!");
     const iconType = {
         "primary": "info-circle",
         "success": "check2-circle",
@@ -8,22 +9,14 @@ function showAlert(variant, message) {
     };
 
     // Create alert element
-    const alert = document.createElement("sl-alert", {
-        variant,
-        closable: true,
-        duration: 3000,
-        innerHTML: `
-            <sl-icon slot="icon" name="${iconType[variant]}"></sl-icon>
-            ${message}
-        `,
-    });
-    // alert.variant = variant; // "success", "warning", "danger", "primary"
-    // alert.closable = true;
-    // alert.duration = 3000; // auto-hide after 3s
-    // alert.innerHTML = `
-    //     <sl-icon slot="icon" name="${type === 'success' ? 'check2-circle' : 'exclamation-triangle'}"></sl-icon>
-    //     ${message}
-    // `;
+    const alert = document.createElement("sl-alert");
+    alert.variant = variant;
+    alert.closable = true;
+    alert.duration = 5000; 
+    alert.innerHTML = `
+        <sl-icon slot="icon" name="${iconType[variant]}"></sl-icon>
+        ${message}
+    `;
 
     // Append to alerts container
     document.querySelector(".sl-alert-container").appendChild(alert);
@@ -32,4 +25,4 @@ function showAlert(variant, message) {
     alert.toast();
 }
 
-module.exports = showAlert;
+window.showAlert = showAlert;

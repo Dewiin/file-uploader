@@ -75,6 +75,14 @@ async function foldersGet(req, res) {
 			},
 		});
 
+		let alert = null;
+		if (userFiles.length == 0 && subfolders.length == 0) {
+			alert = {
+				variant: "primary",
+				message: "Add folders and upload files using the buttons on the left."
+			}
+		}
+
 		if (!folderId) {
 			folderId = "";
 		}
@@ -86,6 +94,7 @@ async function foldersGet(req, res) {
 			folderId,
 			userFiles,
 			subfolders,
+			alert
 		});
 	} catch (err) {
 		console.error(`Error retrieving folders: `, err);
