@@ -13,3 +13,11 @@ const addFileModal = document.querySelector(".modal-container.new-file");
 addFileButton.addEventListener("click", () => {
 	addFileModal.show();
 });
+
+// Edit Folder
+const editFolderButton = document.querySelector(".sl-btn.edit-folder");
+const editFolderModal = document.querySelector(".modal-container.edit-folder");
+
+editFolderButton.addEventListener("click", () => {
+	editFolderModal.show();
+})

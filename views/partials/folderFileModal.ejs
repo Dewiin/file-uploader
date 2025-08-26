@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="/styles/modal.css">
-<% if(modalType === "folder") { %>
+<% if (modalType === "folder") { %>
     <sl-dialog label="Create New Folder" class="modal-container new-folder">
         <form class="modal-form" action="/folders/<%= folderId %>" method="POST">
             <span>
@@ -15,12 +15,28 @@
             </span>
         </form>
     </sl-dialog>
-<% } else { %>
+<% } else if (modalType === "file") { %>
     <sl-dialog label="Upload New File" class="modal-container new-file">
         <form class="modal-form" action="/files/<%= folderId %>" method="POST" enctype="multipart/form-data">
             <span>
                 <input type="file" name="upload-file">
                 <sl-button variant="primary" type="submit">Upload File</sl-button>
+            </span>
+        </form>
+    </sl-dialog>
+<% } else { %>
+    <sl-dialog label="Edit Folder" class="modal-container edit-folder">
+        <form class="modal-form" action="/folders/edit/<%= folderId %>" method="POST">
+            <span>
+                <sl-input 
+                    id="folder-name" 
+                    name="folder-name" 
+                    label="New Folder Name"
+                    help-text="What would you like to rename the folder?"
+                    minlength="1" 
+                    maxlength="50">
+                </sl-input>
+                <sl-button variant="primary" type="submit">Confirm</sl-button>
             </span>
         </form>
     </sl-dialog>

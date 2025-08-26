@@ -1,6 +1,6 @@
 const prisma = require("../config/prismaClient");
 
-// Helper
+// Helpers
 async function getFolderWithSubfolders(parentId, userId) {
 	try {
 		const userFolders = await prisma.folder.findMany({
@@ -51,7 +51,7 @@ async function getBreadcrumbFolders(parentId, userId, result = []) {
 	}
 }
 
-// REST 
+// Read 
 async function foldersGet(req, res) {
 	try {
 		if (!req.user) {
@@ -86,6 +86,7 @@ async function foldersGet(req, res) {
 	}
 }
 
+// Create
 async function foldersPost(req, res) {
 	try {
 		const folderName = req.body["folder-name"];
@@ -110,6 +111,7 @@ async function foldersPost(req, res) {
 	}
 }
 
+// Delete
 async function foldersDelete(req, res) {
 	try {
 		const folderId = req.params.folderId ? parseInt(req.params.folderId) : null;
@@ -139,8 +141,30 @@ async function foldersDelete(req, res) {
 	}
 }
 
+// Update
+async function foldersUpdate(req, res) {
+	try {
+		const newFolderName = req.body['folder-name'];
+		const folderId = parseInt(req.params.folderId);
+
+		await prisma.folder.update({
+			where: {
+				id: folderId,
+			},
+			data: {
+				name: newFolderName,
+			}
+		});
+
+		res.redirect(`/folders/${folderId}`);
+	} catch (err) {
+		console.error(`Error updating folder in database: `, err);
+	}
+}
+
 module.exports = {
 	foldersGet,
 	foldersPost,
 	foldersDelete,
+	foldersUpdate
 };
