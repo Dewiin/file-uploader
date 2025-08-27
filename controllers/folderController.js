@@ -74,6 +74,15 @@ async function foldersGet(req, res) {
 				parentId: folderId,
 			},
 		});
+		let currentFolder = null;
+		if(folderId) {
+			currentFolder = await prisma.folder.findUnique({
+				where: {
+					userId,
+					id: folderId,
+				}
+			});
+		}
 
 		let alert = null;
 		if (userFiles.length == 0 && subfolders.length == 0) {
@@ -94,6 +103,7 @@ async function foldersGet(req, res) {
 			folderId,
 			userFiles,
 			subfolders,
+			currentFolder,
 			alert
 		});
 	} catch (err) {
