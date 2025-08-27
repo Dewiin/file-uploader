@@ -13,6 +13,12 @@
         <a>Created</a>
     </div>
 
+    <% if(subfolders.length == 0 && userFiles.length == 0) { %>
+        <div class="empty-preview">
+            No files or folders to display.
+        </div>
+    <% } %>
+
     <div class="files-container">
         <% subfolders.forEach((subfolder) => { %>
             <a class="file" href="/folders/<%= subfolder.id %>">

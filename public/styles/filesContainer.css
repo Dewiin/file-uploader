@@ -1,8 +1,9 @@
 section.files-main-preview {
 	width: 100%;
 	min-width: 425px;
-	height: 100%;
 	padding: 1rem 2rem;
+	display: flex;
+	flex-direction: column;
 }
 
 .grid-header,
@@ -77,4 +78,12 @@ section.files-main-preview {
 
 .drawer-info > span b {
 	color: rgb(255, 255, 255);
+}
+
+/* Empty */
+.empty-preview {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 1;
 }
