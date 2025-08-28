@@ -20,7 +20,7 @@
 <sl-dialog label="Upload New File" class="modal-container new-file">
     <form class="modal-form" action="/files/<%= folderId %>" method="POST" enctype="multipart/form-data">
         <span>
-            <input type="file" name="upload-file">
+            <input class="new-file" type="file" name="upload-file">
             <sl-button variant="primary" type="submit">Upload File</sl-button>
         </span>
     </form>

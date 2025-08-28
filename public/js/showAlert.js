@@ -26,9 +26,19 @@ function showAlert(variant, title, message) {
     alert.toast();
 }
 
+// Empty Preview Alert
 document.addEventListener("DOMContentLoaded", () => {
     const emptyPreview = document.querySelector(".empty-preview");
     if (emptyPreview) {
         showAlert("primary", "This folder is empty", "Upload files and create folders using the buttons on the left.");
     }
+});
+
+// Upload File Alert
+const fileInput = document.querySelector("input.new-file");
+fileInput.addEventListener("change", (e) => {
+  if (e.target.files.length > 0) {
+    const fileName = e.target.files[0].name;
+    showAlert("success", "File uploaded successfully!", "Click on files to view details.");
+  }
 });
