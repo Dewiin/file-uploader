@@ -34,9 +34,10 @@ async function filePost(req, res) {
 			folderId = "";
 		}
 
-		return res.redirect(`/folders/${folderId}`);
+		res.redirect(`/folders/${folderId}?type=file&action=create&status=success`);
 	} catch (err) {
 		console.error(`Error uploading file: `, err);
+		res.redirect(`/folders/${folderId}?type=file&action=create&status=error&`);
 	}
 }
 
@@ -57,12 +58,13 @@ async function fileDelete(req, res) {
 				},
 			});
 
-			return res.redirect(`/folders/${parentFolder.id}`);
+			return res.redirect(`/folders/${parentFolder.id}?type=file&action=delete&status=success`);
 		}
 
-		res.redirect(`/folders`);
+		res.redirect(`/folders?type=file&action=delete&status=success`);
 	} catch (err) {
 		console.error(`Error deleting file from database: `, err);
+		res.redirect(`/folders?type=file&action=delete&status=error`);
 	}
 }
 

@@ -126,13 +126,13 @@ async function foldersPost(req, res) {
 			},
 		});
 
-		if (parentId) {
-			return res.redirect(`/folders/${parentId}?status=success`);
+		if (!parentId) {
+			parentId = "";
 		}
-		res.redirect(`/folders?status=success`);
+		res.redirect(`/folders/${parentId}?type=folder&action=create&status=success`);
 	} catch (err) {
 		console.error(`Error adding folder to database: `, err);
-		res.redirect(`/folders?status=error`);
+		res.redirect(`/folders?type=folder&action=create&status=error`);
 	}
 }
 
@@ -158,11 +158,12 @@ async function foldersDelete(req, res) {
 		});
 
 		if (closestSibling) {
-			return res.redirect(`/folders/${closestSibling.id}`);
+			return res.redirect(`/folders/${closestSibling.id}?type=folder&action=delete&status=success`);
 		}
-		res.redirect(`/folders`);
+		res.redirect(`/folders?type=folder&action=delete&status=success`);
 	} catch (err) {
 		console.error(`Error deleting folder from database: `, err);
+		res.redirect(`/folders?type=folder&action=delete&status=error`);
 	}
 }
 
@@ -181,9 +182,10 @@ async function foldersUpdate(req, res) {
 			},
 		});
 
-		res.redirect(`/folders/${folderId}`);
+		res.redirect(`/folders/${folderId}?type=folder&action=update&status=success`);
 	} catch (err) {
 		console.error(`Error updating folder in database: `, err);
+		res.redirect(`/folders/${folderId}?type=folder&action=update&status=error`);
 	}
 }
 

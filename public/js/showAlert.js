@@ -25,19 +25,83 @@ function showAlert(variant, title, message) {
     alert.toast();
 }
 
-// Empty Preview Alert
-document.addEventListener("DOMContentLoaded", () => {
-    const emptyPreview = document.querySelector(".empty-preview");
-    if (emptyPreview) {
-        showAlert("primary", "This folder is empty", "Upload files and create folders using the buttons on the left.");
-    }
-});
-
-// Upload File Alert
+// Alerts
 document.addEventListener("DOMContentLoaded", () => {
     const params = new URLSearchParams(window.location.search);
 
-    if (params.get("status") === "success") {
-        showAlert("success", "Folder created successfully!");
+    const type = params.get("type");
+    const action = params.get("action");
+    const status = params.get("status");
+
+    const alertConfigs = {
+        folder: {
+            create: {
+                success: {
+                    variant: "success",
+                    title: "Folder created successfully!",
+                    message: "View new folders in the sidebar.",
+                },
+                error: {
+                    variant: "warning",
+                    title: "Something went wrong",
+                    message: "Your folder could not be created.",
+                },
+            },
+            delete: {
+                success: {
+                    variant: "danger",
+                    title: "Folder removed",
+                    message: "Your folder has been permanently deleted."
+                },
+                error: {
+                    variant: "warning",
+                    title: "Something went wrong",
+                    message: "Your folder failed to be deleted."
+                }
+            },
+            update: {
+                success: {
+                    variant: "success",
+                    title: "File successfully edited!",
+                    message: "Your folder has been renamed."
+                },
+                error: {
+                    variant: "warning",
+                    title: "Something went wrong",
+                    message: "Your folder failed to update."
+                }
+            }
+        },
+        file: {
+            create: {
+                success: {
+                    variant: "success",
+                    title: "File uploaded successfully!",
+                    message: "Click on files to view details and information.",
+                },
+                error: {
+                    variant: "warning",
+                    title: "Something went wrong",
+                    message: "Your file failed to upload.",
+                },
+            },
+            delete: {
+                success: {
+                    variant: "danger",
+                    title: "File removed",
+                    message: "Your file has been permanently deleted."
+                },
+                error: {
+                    variant: "warning",
+                    title: "Something went wrong",
+                    message: "Your file failed to be deleted."
+                }
+            },
+        },
+    };
+
+    const config = alertConfigs[type][action][status];
+    if (config) {
+        showAlert(config.variant, config.title, config.message);
     }
 });
