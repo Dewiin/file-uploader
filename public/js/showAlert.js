@@ -1,5 +1,4 @@
 function showAlert(variant, title, message) {
-    console.log("ping!");
     const iconType = {
         "primary": "info-circle",
         "success": "check2-circle",
@@ -12,7 +11,7 @@ function showAlert(variant, title, message) {
     const alert = document.createElement("sl-alert");
     alert.variant = variant;
     alert.closable = true;
-    alert.duration = 50000; 
+    alert.duration = 3000; 
     alert.innerHTML = `
         <sl-icon slot="icon" name="${iconType[variant]}"></sl-icon>
         <strong style="font-size: 1rem">${title}</strong> <br>
@@ -35,10 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Upload File Alert
-const fileInput = document.querySelector("input.new-file");
-fileInput.addEventListener("change", (e) => {
-  if (e.target.files.length > 0) {
-    const fileName = e.target.files[0].name;
-    showAlert("success", "File uploaded successfully!", "Click on files to view details.");
-  }
+document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get("status") === "success") {
+        showAlert("success", "Folder created successfully!");
+    }
 });

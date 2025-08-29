@@ -126,13 +126,13 @@ async function foldersPost(req, res) {
 			},
 		});
 
-		if (!parentId) {
-			parentId = "";
+		if (parentId) {
+			return res.redirect(`/folders/${parentId}?status=success`);
 		}
-
-		res.redirect(`/folders/${parentId}`);
+		res.redirect(`/folders?status=success`);
 	} catch (err) {
 		console.error(`Error adding folder to database: `, err);
+		res.redirect(`/folders?status=error`);
 	}
 }
 
