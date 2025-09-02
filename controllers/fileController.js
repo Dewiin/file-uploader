@@ -1,4 +1,5 @@
 const prisma = require("../config/prismaClient");
+const supabase = require("../config/supabaseClient");
 
 // Helper
 function formatBytes(bytes, decimals = 2) {
