@@ -19,14 +19,25 @@ async function filePost(req, res) {
 	try {
 		const name = req.file.originalname;
 		const size = formatBytes(req.file.size);
-		const url = req.file.path;
 		let folderId = req.params.folderId ? parseInt(req.params.folderId) : null;
+
+		// Supabase
+		const {data, error} = await supabase.storage.from("Drive").upload(`${folderId}/${name}`, req.file.buffer);
+		if (error) {
+			console.error(`Error uploading file: `, err);
+			return res.redirect(`/folders/${folderId}?type=file&action=create&status=error`);
+		} 
+
+		// Construct public URL
+		const { data: publicUrlData } = supabase.storage
+		.from("Drive")
+		.getPublicUrl(filePath);
 
 		await prisma.file.create({
 			data: {
 				name,
 				size,
-				url,
+				url: publicUrlData,
 				folderId,
 			},
 		});
@@ -38,7 +49,7 @@ async function filePost(req, res) {
 		res.redirect(`/folders/${folderId}?type=file&action=create&status=success`);
 	} catch (err) {
 		console.error(`Error uploading file: `, err);
-		res.redirect(`/folders/${folderId}?type=file&action=create&status=error&`);
+		res.redirect(`/folders/${folderId}?type=file&action=create&status=error`);
 	}
 }
 
