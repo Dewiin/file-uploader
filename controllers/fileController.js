@@ -16,28 +16,34 @@ function formatBytes(bytes, decimals = 2) {
 }
 
 async function filePost(req, res) {
+	let folderId = req.params.folderId ? parseInt(req.params.folderId) : null;
 	try {
 		const name = req.file.originalname;
 		const size = formatBytes(req.file.size);
-		let folderId = req.params.folderId ? parseInt(req.params.folderId) : null;
 
 		// Supabase
-		const {data, error} = await supabase.storage.from("Drive").upload(`${folderId}/${name}`, req.file.buffer);
+		const filePath = `${folderId}/${name}`;
+		const {data, error} = await supabase.storage
+		.from("Drive")
+		.upload(filePath, req.file, {
+			contentType: req.file.mimetype
+		});
 		if (error) {
-			console.error(`Error uploading file: `, err);
+			console.error(`Error uploading file: `, error);
 			return res.redirect(`/folders/${folderId}?type=file&action=create&status=error`);
 		} 
 
 		// Construct public URL
 		const { data: publicUrlData } = supabase.storage
 		.from("Drive")
-		.getPublicUrl(filePath);
+		.getPublicUrl(filePath);	
+		console.log(publicUrlData.publicUrl);
 
 		await prisma.file.create({
 			data: {
 				name,
 				size,
-				url: publicUrlData,
+				url: publicUrlData.publicUrl,
 				folderId,
 			},
 		});
@@ -48,6 +54,9 @@ async function filePost(req, res) {
 
 		res.redirect(`/folders/${folderId}?type=file&action=create&status=success`);
 	} catch (err) {
+		if (!folderId) {
+			folderId = "";
+		}
 		console.error(`Error uploading file: `, err);
 		res.redirect(`/folders/${folderId}?type=file&action=create&status=error`);
 	}
