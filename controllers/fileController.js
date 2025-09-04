@@ -25,8 +25,9 @@ async function filePost(req, res) {
 		const filePath = `${folderId}/${name}`;
 		const {data, error} = await supabase.storage
 		.from("Drive")
-		.upload(filePath, req.file, {
-			contentType: req.file.mimetype
+		.upload(filePath, req.file.buffer, {
+			contentType: req.file.mimetype,
+			upsert: false
 		});
 		if (error) {
 			console.error(`Error uploading file: `, error);
@@ -37,7 +38,6 @@ async function filePost(req, res) {
 		const { data: publicUrlData } = supabase.storage
 		.from("Drive")
 		.getPublicUrl(filePath);	
-		console.log(publicUrlData.publicUrl);
 
 		await prisma.file.create({
 			data: {
@@ -72,7 +72,12 @@ async function fileDelete(req, res) {
 			},
 		});
 
+		const filePath = `null/${deletedFile.name}`;
 		if (deletedFile.folderId) {
+			// Supabase
+			filePath = `${deletedFile.folderId}/${deletedFile.name}`;
+			await supabase.storage.from("Drive").remove([filePath]);
+
 			const parentFolder = await prisma.folder.findUnique({
 				where: {
 					id: deletedFile.folderId,
@@ -82,6 +87,7 @@ async function fileDelete(req, res) {
 			return res.redirect(`/folders/${parentFolder.id}?type=file&action=delete&status=success`);
 		}
 
+		await supabase.storage.from("Drive").remove([filePath]);
 		res.redirect(`/folders?type=file&action=delete&status=success`);
 	} catch (err) {
 		console.error(`Error deleting file from database: `, err);
