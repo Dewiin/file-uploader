@@ -67,6 +67,9 @@ async function foldersGet(req, res) {
 		const userFiles = await prisma.file.findMany({
 			where: {
 				folderId,
+				folder: {
+					userId
+				}
 			},
 		});
 		const subfolders = await prisma.folder.findMany({
@@ -77,7 +80,7 @@ async function foldersGet(req, res) {
 		});
 		let currentFolder = null;
 		if(folderId) {
-			currentFolder = await prisma.folder.findUnique({
+			currentFolder = await prisma.folder.findFirst({
 				where: {
 					userId,
 					id: folderId,
