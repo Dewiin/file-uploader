@@ -66,10 +66,8 @@ async function foldersGet(req, res) {
 
 		const userFiles = await prisma.file.findMany({
 			where: {
+				userId,
 				folderId,
-				folder: {
-					userId
-				}
 			},
 		});
 		const subfolders = await prisma.folder.findMany({
@@ -147,9 +145,14 @@ async function foldersDelete(req, res) {
 
 		const deletedFolder = await prisma.folder.delete({
 			where: {
+				userId: req.user.id,
 				id: folderId,
 			},
 		});
+
+		if(!deletedFolder) {
+			return res.redirect(`/folders/${closestSibling.id}?type=folder&action=delete&status=error`);
+		}
 
 		const closestSibling = await prisma.folder.findFirst({
 			where: {

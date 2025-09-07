@@ -18,6 +18,7 @@ function formatBytes(bytes, decimals = 2) {
 async function filePost(req, res) {
 	let folderId = req.params.folderId ? parseInt(req.params.folderId) : null;
 	try {
+		const userId = req.user.id;
 		const name = req.file.originalname;
 		const size = formatBytes(req.file.size);
 
@@ -45,6 +46,7 @@ async function filePost(req, res) {
 				size,
 				url: publicUrlData.publicUrl,
 				folderId,
+				userId
 			},
 		});
 

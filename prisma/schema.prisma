@@ -18,6 +18,7 @@ model User {
   username String   @unique
   password String
   folders  Folder[]
+  files    File[]
   Share    Share[]
 
   @@map("users")
@@ -59,6 +60,8 @@ model File {
   // Relations
   folderId Int?
   folder   Folder? @relation(fields: [folderId], references: [id])
+  userId   Int
+  user     User    @relation(fields: [userId], references: [id])
 
   @@map("files")
 }
