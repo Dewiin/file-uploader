@@ -71,6 +71,7 @@ async function fileDelete(req, res) {
 		const deletedFile = await prisma.file.delete({
 			where: {
 				id: fileId,
+				userId: req.user.id,
 			},
 		});
 
