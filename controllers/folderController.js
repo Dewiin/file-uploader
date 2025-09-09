@@ -179,10 +179,12 @@ async function foldersUpdate(req, res) {
 	try {
 		const newFolderName = req.body["folder-name"];
 		const folderId = parseInt(req.params.folderId);
+		const userId = req.user.id;
 
 		await prisma.folder.update({
 			where: {
 				id: folderId,
+				userId,
 			},
 			data: {
 				name: newFolderName,
