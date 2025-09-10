@@ -142,10 +142,11 @@ async function foldersPost(req, res) {
 async function foldersDelete(req, res) {
 	try {
 		const folderId = req.params.folderId ? parseInt(req.params.folderId) : null;
+		const userId = req.user.id;
 
 		const deletedFolder = await prisma.folder.delete({
 			where: {
-				userId: req.user.id,
+				userId,
 				id: folderId,
 			},
 		});
@@ -156,7 +157,7 @@ async function foldersDelete(req, res) {
 
 		const closestSibling = await prisma.folder.findFirst({
 			where: {
-				userId: req.user.id,
+				userId,
 				parentId: deletedFolder.parentId,
 			},
 			orderBy: {

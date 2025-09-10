@@ -80,6 +80,21 @@ section.files-main-preview {
 	color: rgb(255, 255, 255);
 }
 
+.preview-container {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	padding: 0 1rem;
+	border: 1px solid rgb(255, 255, 255, 0.5);
+	box-sizing: border-box;
+}
+
+.preview-container > img {
+	max-width: 80%;
+	object-fit: contain;
+}
+
 /* Empty */
 .empty-preview {
 	display: flex;
