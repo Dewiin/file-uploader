@@ -96,7 +96,6 @@ async function foldersGet(req, res) {
 
 		if (!folderId) {
 			folderId = "";
-			lololol
 		}
 
 		res.render("index", {
