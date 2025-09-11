@@ -67,11 +67,12 @@ async function filePost(req, res) {
 async function fileDelete(req, res) {
 	try {
 		const fileId = parseInt(req.params.fileId);
+		const userId = req.user.id;
 
 		const deletedFile = await prisma.file.delete({
 			where: {
 				id: fileId,
-				userId: req.user.id,
+				userId,
 			},
 		});
 

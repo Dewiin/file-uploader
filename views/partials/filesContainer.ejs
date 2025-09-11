@@ -56,6 +56,14 @@
                             year: "numeric",
                         }) %>
                     </span>
+                    <% const isImage = /\.(png|jpe?g|gif|webp)$/i.test(file.name); %>
+                    <span class="preview-container">
+                        <% if (isImage) { %>
+                            <img src="<%= file.url %>">
+                        <% } else { %>
+                            <img src="https://png.pngtree.com/png-vector/20220622/ourmid/pngtree-blank-file-icon-page-document-png-image_5284087.png" width="50%">
+                        <% } %>
+                    </span>
                 </div>
 
                 <sl-button slot="footer" class="drawer-close-button">Close</sl-button>
