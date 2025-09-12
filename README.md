@@ -41,8 +41,7 @@
 
 ## Introduction
 
-An exclusive anonymous clubhouse where members can share secret posts visible only to other members. Members can register, write anonymous posts, and see who wrote what only inside the club. Outside, posts appear anonymous.
-
+An google drive clone where users can upload, share, and download files.
 ## Features
 
 - User authentication
