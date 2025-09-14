@@ -38,6 +38,17 @@
 	font-size: 1.05em;
 }
 
+.login-buttons {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.login-buttons > p {
+	margin: 0.25rem;
+}
+
 @media (max-width: 450px) {
 	.auth-form {
 		padding: 2rem 0;
