@@ -23,7 +23,8 @@ async function filePost(req, res) {
 		const size = formatBytes(req.file.size);
 
 		// Supabase
-		const filePath = `${folderId}/${name}`;
+		const supabaseFolderId = folderId ? folderId : `user${userId}`;
+		const filePath = `${supabaseFolderId}/${name}`;
 		const {data, error} = await supabase.storage
 		.from("Drive")
 		.upload(filePath, req.file.buffer, {
@@ -76,7 +77,7 @@ async function fileDelete(req, res) {
 			},
 		});
 
-		const filePath = `null/${deletedFile.name}`;
+		const filePath = `user${userId}/${deletedFile.name}`;
 		if (deletedFile.folderId) {
 			// Supabase
 			filePath = `${deletedFile.folderId}/${deletedFile.name}`;
