@@ -40,14 +40,17 @@
 </details>
 
 ## Introduction
+A simple web application that allows users to create folders, upload files, preview images, and manage their personal storage.
 
-An google drive clone where users can upload, share, and download files.
+
 ## Features
 
 - User authentication
-- Anonymous posting system
-- Fully responsive design
-- Members-only access control
+- Create and delete folders
+- Upload and delete files
+- Image preview support (JPG, PNG, etc.)
+- Supabase storage integration
+- PostgreSQL database powered by Prisma ORM
 
 ### Built With
 
