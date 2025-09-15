@@ -71,6 +71,7 @@ async function indexGet(req, res) {
 		res.redirect("/folders");
 	} catch (err) {
 		console.error("Error rendering index page: ", err);
+		res.redirect("/login");
 	}
 }
 
@@ -84,6 +85,7 @@ async function loginGet(req, res) {
 		res.redirect("/");
 	} catch (err) {
 		console.error("Error rendering login page: ", err);
+		res.render("login");
 	}
 }
 
@@ -99,6 +101,7 @@ async function loginPost(req, res, next) {
 		next();
 	} catch (err) {
 		console.error("Error verifying user login: ", err);
+		res.render("login");
 	}
 }
 
@@ -112,6 +115,7 @@ async function signupGet(req, res) {
 		res.redirect("/");
 	} catch (err) {
 		console.error("Error rendering sign-up page: ", err);
+		res.render("signup");
 	}
 }
 
@@ -136,6 +140,7 @@ async function signupPost(req, res, next) {
 		next();
 	} catch (err) {
 		console.error("Error verifying user signup: ", err);
+		res.render("signup");
 	}
 }
 
@@ -147,6 +152,33 @@ function logoutGet(req, res) {
 		}
 		res.redirect("/");
 	});
+}
+
+// Demo Account
+async function demoGet(req, res) {
+	try {
+		const demoUser = await prisma.user.findFirst({
+			where: {
+				username: "demoAccount",
+			}
+		});
+		if(!demoUser) {
+			console.error("Demo account not found.");
+			return res.redirect("/login");
+		}
+
+		req.login(demoUser, (err) => {
+			if (err) {
+				console.error("Error verifying demo login: ", err);
+				return res.redirect("/login");
+			}	
+			return res.redirect("/");
+		});
+
+	} catch (err) {
+		console.error("Error verifying demo login: ", err);
+		res.render("login");
+	}
 }
 
 module.exports = {
@@ -170,4 +202,5 @@ module.exports = {
 		}),
 	],
 	logoutGet,
+	demoGet
 };

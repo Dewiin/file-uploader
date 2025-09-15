@@ -8,5 +8,6 @@ indexRouter.post("/login", indexController.loginPost);
 indexRouter.get("/sign-up", indexController.signupGet);
 indexRouter.post("/sign-up", indexController.signupPost);
 indexRouter.get("/logout", indexController.logoutGet);
+indexRouter.get("/demo", indexController.demoGet);
 
 module.exports = indexRouter;
