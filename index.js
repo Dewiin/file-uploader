@@ -6,6 +6,7 @@ const app = express();
 const indexRouter = require("./routes/indexRouter");
 const folderRouter = require("./routes/folderRouter");
 const fileRouter = require("./routes/fileRouter");
+const shareRouter = require("./routes/shareRouter");
 const sessionConfig = require("./config/sessionConfig");
 require("./config/passportConfig");
 
@@ -22,6 +23,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/folders", folderRouter);
 app.use("/files", fileRouter);
+app.use("/share", shareRouter);
 app.use((req, res) => {
 	res.status(404).render("404", { user: req.user });
 });
