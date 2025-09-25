@@ -274,3 +274,5 @@ SOFTWARE.
 [EJS-url]: https://ejs.co/
 [PostgreSQL]: https://img.shields.io/badge/Postgres-%2323316192.svg?style=for-the-badge&logo=postgresql&logoColor=white
 [PostgreSQL-url]: https://www.postgresql.org/
+[Prisma]: https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white
+[Prisma-url]: https://www.prisma.io/docs
