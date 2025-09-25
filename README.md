@@ -70,58 +70,59 @@ A simple web application that allows users to create folders, upload files, prev
 ├── LICENSE
 ├── README.md
 ├── config
-│   ├── passportConfig.js
-│   └── sessionConfig.js
+│   ├── passportConfig.js
+│   ├── prismaClient.js
+│   ├── sessionConfig.js
+│   └── supabaseClient.js
 ├── controllers
-│   ├── formsController.js
-│   └── indexController.js
-├── db
-│   ├── messageQueries.js
-│   ├── pool.js
-│   ├── script.js
-│   └── userQueries.js
+│   ├── fileController.js
+│   ├── folderController.js
+│   ├── indexController.js
+│   └── shareController.js
 ├── index.js
 ├── package-lock.json
 ├── package.json
+├── prisma
+│   └── schema.prisma
 ├── public
-│   ├── assets
-│   │   └── inkcognito_logo.png
-│   ├── favicon
-│   │   ├── apple-touch-icon.png
-│   │   ├── favicon-96x96.png
-│   │   ├── favicon.ico
-│   │   ├── favicon.svg
-│   │   ├── site.webmanifest
-│   │   ├── web-app-manifest-192x192.png
-│   │   └── web-app-manifest-512x512.png
-│   ├── scripts
-│   │   ├── addMembership.js
-│   │   └── userNavbar.js
-│   └── styles
-│       ├── form.css
-│       ├── index.css
-│       ├── messages.css
-│       ├── navbar.css
-│       └── profile.css
+│   ├── favicon
+│   │   ├── apple-touch-icon.png
+│   │   ├── favicon-96x96.png
+│   │   ├── favicon.ico
+│   │   ├── favicon.svg
+│   │   ├── site.webmanifest
+│   │   ├── web-app-manifest-192x192.png
+│   │   └── web-app-manifest-512x512.png
+│   ├── js
+│   │   ├── fileDrawer.js
+│   │   ├── folderFileModal.js
+│   │   └── showAlert.js
+│   └── styles
+│       ├── filesContainer.css
+│       ├── form.css
+│       ├── index.css
+│       ├── modal.css
+│       ├── navbar.css
+│       └── sidebar.css
 ├── routes
-│   ├── formsRouter.js
-│   └── indexRouter.js
+│   ├── fileRouter.js
+│   ├── folderRouter.js
+│   ├── indexRouter.js
+│   └── shareRouter.js
 └── views
-    ├── 401.ejs
     ├── 404.ejs
     ├── index.ejs
     ├── login.ejs
-    ├── newPost.ejs
     ├── partials
-    │   ├── defaultNavbar.ejs
-    │   ├── errors.ejs
-    │   ├── favicon.ejs
-    │   ├── footer.ejs
-    │   ├── message.ejs
-    │   ├── unauthorized.ejs
-    │   └── userNavbar.ejs
-    ├── profile.ejs
-    └── register.ejs
+    │   ├── errors.ejs
+    │   ├── filesContainer.ejs
+    │   ├── folderFileModal.ejs
+    │   ├── footer.ejs
+    │   ├── header.ejs
+    │   ├── navbar.ejs
+    │   ├── sidebar.ejs
+    │   └── treeItem.ejs
+    └── signup.ejs
 ```
 
 ## Getting Started
