@@ -153,17 +153,16 @@ To get a local copy of this repository up and running locally follow these steps
    ```
 2. Clone the repository:
    ```sh
-   git clone https://github.com/Dewiin/members-only.git
+   git clone https://github.com/Dewiin/file-uploader.git
    ```
 3. Navigate to the project directory:
    ```sh
-   cd members-only
+   cd file-uploader
    ```
 4. Download the dependencies in package.json:
    ```sh
    npm install
    ```
-
 ### Creating Database
 
 1. Enter the PostgreSQL shell:
@@ -172,11 +171,23 @@ To get a local copy of this repository up and running locally follow these steps
    ```
 2. Then, in your PostgreSQL shell:
    ```sh
-   CREATE DATABASE members_only;
+   CREATE DATABASE file_uploader;
    ```
 3. Connect to the database:
    ```sh
-   \c members_only
+   \c file_uploader
+   ```
+
+### Set Up Schema
+
+1. Navigate to the root directory.  
+Then, generate the prisma schema:
+   ```sh
+   npx prisma generate
+   ```
+2. Push:
+   ```sh
+   npx prisma db push
    ```
 
 ### Seeding
@@ -188,10 +199,14 @@ To get a local copy of this repository up and running locally follow these steps
 2. Add your Connection URI:
    ```sh
    DATABASE_URL=postgresql://your_username:your_password@localhost:5432/members_only
-   ```
-3. Run the script to create database schema:
-   ```sh
-   npm run script
+   SESSION_SECRET= # create your own
+
+   # use your own supabase storage
+   SUPABASE_KEY= 
+   SUPABASE_URL= 
+
+   DEMO_USERNAME="demoAccount"
+   DEMO_PASSWORD="123123"
    ```
 
 ### Usage
@@ -201,8 +216,7 @@ To get a local copy of this repository up and running locally follow these steps
    npm run dev
    ```
 2. Navigation:  
-   **Home Page** displays all messages.  
-   **Profile** displays the user's info, and all their posts.
+   **Home Page** displays all folders, subfolders, and files.  
 
 <p align="right"><a href="#readme-top">Back to top</a></p>
 
