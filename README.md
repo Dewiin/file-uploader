@@ -223,7 +223,7 @@ Then, generate the prisma schema:
 ## Preview
 
 <div align="center">
-  <img src="./public/assets/inkcognito_ss.png" alt="demo video">
+  <img src="./public/assets/logo.png" alt="demo video">
 </div>
 
 <p align="right"><a href="#readme-top">Back to top</a></p>
